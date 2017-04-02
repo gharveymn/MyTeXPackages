@@ -36,6 +36,8 @@
 \RequirePackage{enumitem}
 \RequirePackage{wrapfig}
 \RequirePackage{physics}
+\RequirePackage{libertine}
+\renewcommand*\rmdefault{cmr}
 
 
 \RequirePackage{tikz}
@@ -53,16 +55,7 @@
 \usetikzlibrary{decorations.pathmorphing,shapes}
 \tikzset{snake it/.style={decorate, decoration=snake}}
 
-\newtheoremstyle{myStyle}
-  {10pt} % Space above
-  {10pt} % Space below
-  {} % Body font
-  {} % Indent amount
-  {\bfseries} % Theorem head font
-  {.} % Punctuation after theorem head
-  {.5em} % Space after theorem head
-  {} % Theorem head spec (can be left empty, meaning `normal')
-\theoremstyle{myStyle}
+\allowdisplaybreaks
 
 \newcommand{\pronewcommand}[2]{\providecommand{#1}{#2}\renewcommand{#1}{#2}}
 
@@ -124,13 +117,42 @@
 \DeclareMathOperator\arcsech{arcsech}
 \DeclareMathOperator\arccoth{arccoth}
 
-
+\newtheoremstyle{myStyleSC}
+  {10pt} % Space above
+  {10pt} % Space below
+  {\itshape} % Body font
+  {} % Indent amount
+  {\libertine\bfseries\scshape} % Theorem head font
+  {.} % Punctuation after theorem head
+  {.5em} % Space after theorem head
+  {} % Theorem head spec (can be left empty, meaning `normal')
+\theoremstyle{myStyleSC}
 
 \newtheorem{theorem}{Theorem}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{\textsc{Definition}}
+\newtheorem{lemma}[theorem]{\textsc{Lemma}}
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{algorithm}[theorem]{Algorithm}
+
+\newtheorem*{definition*}{Definition}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem*{algorithm*}{Algorithm}
+
+\newtheoremstyle{myStyleIT}
+  {10pt} % Space above
+  {10pt} % Space below
+  {} % Body font
+  {} % Indent amount
+  {\itshape} % Theorem head font
+  {.} % Punctuation after theorem head
+  {.5em} % Space after theorem head
+  {} % Theorem head spec (can be left empty, meaning `normal')
+\theoremstyle{myStyleIT}
+
 \newtheorem{conjecture}[theorem]{Conjecture}
 \newtheorem{claim}[theorem]{Claim}
 \newtheorem{axiom}[theorem]{Axiom}
@@ -138,11 +160,6 @@
 \newtheorem{identity}[theorem]{Identity}
 \newtheorem{paradox}[theorem]{Paradox}
 
-\newtheorem*{definition*}{Definition}
-\newtheorem*{theorem*}{Theorem}
-\newtheorem*{lemma*}{Lemma}
-\newtheorem*{corollary*}{Corollary}
-\newtheorem*{proposition*}{Proposition}
 \newtheorem*{conjecture*}{Conjecture}
 \newtheorem*{claim*}{Claim}
 \newtheorem*{axiom*}{Axiom}
@@ -150,6 +167,12 @@
 \newtheorem*{identity*}{Identity}
 \newtheorem*{paradox*}{Paradox}
 \newtheorem*{exercise*}{Exercise}
+\newtheorem*{fact*}{Fact}
+\newtheorem*{conclusion*}{Conclusion}
+\newtheorem*{remark*}{Remark}
+\newtheorem*{note*}{Note}
+
+
 \renewcommand\qedsymbol{$\blacksquare$}
 
 \setlength{\droptitle}{-1in}
