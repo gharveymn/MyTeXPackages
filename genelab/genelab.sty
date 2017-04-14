@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{geneassignment}[2016/03/08 v0.1 Gene's package for making assignments]
+\ProvidesPackage{genelab}[2017/25/08 v0.1 Gene's package for making assignments]
 
 % Redefine the page margins
 % TODO: Adjust margins to your liking
@@ -29,16 +29,13 @@
 \RequirePackage{color}
 \RequirePackage{upgreek}
 \RequirePackage{siunitx}
-\sisetup{group-digits=false,output-exponent-marker=\textsc{e}, bracket-negative-numbers, open-bracket={\text{-}}, close-bracket={}}
+\sisetup{group-digits=false,output-exponent-marker=\textsc{e}, bracket-negative-numbers, open-bracket={\text{-}}, close-bracket={},separate-uncertainty = true,multi-part-units=single}
 \RequirePackage{enumerate}
 \RequirePackage{cancel}
 \RequirePackage{microtype}
 \RequirePackage{enumitem}
 \RequirePackage{wrapfig}
 \RequirePackage{physics}
-\RequirePackage{pdfpages}
-\RequirePackage{libertine}
-\renewcommand*\rmdefault{cmr}
 
 
 \RequirePackage{tikz}
@@ -56,40 +53,35 @@
 \usetikzlibrary{decorations.pathmorphing,shapes}
 \tikzset{snake it/.style={decorate, decoration=snake}}
 
-\allowdisplaybreaks
+\newtheoremstyle{myStyle}
+  {10pt} % Space above
+  {10pt} % Space below
+  {} % Body font
+  {} % Indent amount
+  {\bfseries} % Theorem head font
+  {.} % Punctuation after theorem head
+  {.5em} % Space after theorem head
+  {} % Theorem head spec (can be left empty, meaning `normal')
+\theoremstyle{myStyle}
 
-\newcommand{\pronewcommand}[2]{\providecommand{#1}{#2}\renewcommand{#1}{#2}}
-
-\newcommand{\T}{\intercal}
-\newcommand{\sqfr}[2]{\sqrt{\frac{#1}{#2}}}
 \newcommand{\e}{\mathrm{e}}
 \newcommand{\underdot}{\d}
 \renewcommand{\d}{\dd}
 \newcommand{\dif}{\dd}
 \newcommand{\od}{\derivative}
 \newcommand{\pd}{\pdv}
-\renewcommand{\phi}{\varphi}
 \renewcommand{\epsilon}{\varepsilon}
-\newcommand{\iimg}{\bm{\upiota}}
+\newcommand{\iimg}{\upiota}
 \newcommand{\mr}{\mathrm}
 \newcommand{\KE}{\mr{KE}}
-
 \newcommand{\dx}{\dif{x}}
 \newcommand{\dy}{\dif{y}}
 \newcommand{\dz}{\dif{z}}
 \newcommand{\du}{\dif{u}}
 \newcommand{\dt}{\dif{t}}
-\newcommand{\dm}{\dif{m}}
 \providecommand{\dv}{\dif{v}}
 \renewcommand{\dv}{\dif{v}}
 \newcommand{\dr}{\dif{r}}
-\newcommand{\dtheta}{\dif{\theta}}
-\newcommand{\dphi}{\dif{\phi}}
-\newcommand{\drho}{\dif{\rho}}
-\newcommand{\dmu}{\dif{\mu}}
-\newcommand{\dA}{\dif{A}}
-\newcommand{\dV}{\dif{V}}
-
 \newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
 \newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
 \newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
@@ -120,54 +112,12 @@
 \definecolor{codegray}{gray}{0.9}
 \newcommand{\code}[1]{\colorbox{codegray}{\texttt{#1}}}
 \newcommand*{\equal}{=}
-\renewcommand{\hbar}{\mathchar'26\mkern-8mu \mathrm{\textbf{h}}}
-\renewcommand{\c}{\mathrm{\textbf{c}}}
-
-\newcommand{\nfrac}[2]{\frac{\raisebox{-.5ex}{$\displaystyle{#1}$}}{#2}}
-
-\DeclareMathOperator\arcsinh{arcsinh}
-\DeclareMathOperator\arccosh{arccosh}
-\DeclareMathOperator\arctanh{arctanh}
-\DeclareMathOperator\arccsch{arccsch}
-\DeclareMathOperator\arcsech{arcsech}
-\DeclareMathOperator\arccoth{arccoth}
-
-\newtheoremstyle{myStyleSC}
-  {10pt} % Space above
-  {10pt} % Space below
-  {\itshape} % Body font
-  {} % Indent amount
-  {\libertine\bfseries\scshape} % Theorem head font
-  {.} % Punctuation after theorem head
-  {.5em} % Space after theorem head
-  {} % Theorem head spec (can be left empty, meaning `normal')
-\theoremstyle{myStyleSC}
 
 \newtheorem{theorem}{Theorem}
-\newtheorem{definition}[theorem]{\textsc{Definition}}
-\newtheorem{lemma}[theorem]{\textsc{Lemma}}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{algorithm}[theorem]{Algorithm}
-
-\newtheorem*{definition*}{Definition}
-\newtheorem*{theorem*}{Theorem}
-\newtheorem*{lemma*}{Lemma}
-\newtheorem*{corollary*}{Corollary}
-\newtheorem*{proposition*}{Proposition}
-\newtheorem*{algorithm*}{Algorithm}
-
-\newtheoremstyle{myStyleIT}
-  {10pt} % Space above
-  {10pt} % Space below
-  {} % Body font
-  {} % Indent amount
-  {\itshape} % Theorem head font
-  {.} % Punctuation after theorem head
-  {.5em} % Space after theorem head
-  {} % Theorem head spec (can be left empty, meaning `normal')
-\theoremstyle{myStyleIT}
-
 \newtheorem{conjecture}[theorem]{Conjecture}
 \newtheorem{claim}[theorem]{Claim}
 \newtheorem{axiom}[theorem]{Axiom}
@@ -175,6 +125,11 @@
 \newtheorem{identity}[theorem]{Identity}
 \newtheorem{paradox}[theorem]{Paradox}
 
+\newtheorem*{definition*}{Definition}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem*{proposition*}{Proposition}
 \newtheorem*{conjecture*}{Conjecture}
 \newtheorem*{claim*}{Claim}
 \newtheorem*{axiom*}{Axiom}
@@ -182,15 +137,7 @@
 \newtheorem*{identity*}{Identity}
 \newtheorem*{paradox*}{Paradox}
 \newtheorem*{exercise*}{Exercise}
-\newtheorem*{fact*}{Fact}
-\newtheorem*{conclusion*}{Conclusion}
-\newtheorem*{remark*}{Remark}
-\newtheorem*{note*}{Note}
-
-
 \renewcommand\qedsymbol{$\blacksquare$}
-
-\setlength{\droptitle}{-1in}
 
 \newcommand{\studentnumber}[1]
 {
@@ -211,7 +158,6 @@
 \newcommand{\exampletitle}[1][]{\textcolor{darkgray}{\raisebox{0.25ex}{$\blacktriangleright$}}\nobreakspace{\sffamily\textbf{Example\ifthenelse{\equal{#1}{}}{}{ (#1)}}}}
 \newcommand{\problemtitle}[1][]{\textcolor{darkgray}{\raisebox{0.25ex}{$\blacktriangleright$}}\nobreakspace{\sffamily\textbf{Problem\ifthenelse{\equal{#1}{}}{}{ (#1)}}}}
 \newcommand{\solutiontitle}[1][]{\textcolor{darkgray}{\raisebox{0.25ex}{$\blacktriangleleft$}}\nobreakspace{\sffamily\textbf{Solution\ifthenelse{\equal{#1}{}}{}{ (#1)}}}}
-\newcommand{\solutionendline}{\hfill\makebox[0pt][c]{$\rule{2in}{0.15mm}$}\makebox[.381953in][r]{}}
 \newenvironment{TheProblem}[1][]%
   {%
     \vspace{\parskip}%
@@ -233,7 +179,7 @@
     \if@prob\else
 	{
 	\noindent
-	\solutionendline
+	\hfill\makebox[0pt][c]{$\rule{2in}{0.15mm}$}\makebox[.381953in][r]{}
 	}
     \fi
     \unskip

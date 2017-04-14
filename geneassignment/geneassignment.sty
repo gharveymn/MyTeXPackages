@@ -1,0 +1,490 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{geneassignment}[2016/03/08 v0.1 Gene's package for making assignments]
+
+% Redefine the page margins
+% TODO: Adjust margins to your liking
+\RequirePackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+
+% TODO: If there are any other article modifications required, add them here.
+	
+\RequirePackage[utf8]{inputenc}
+\RequirePackage{url}
+\RequirePackage{amsmath}
+\RequirePackage{amsthm}
+\RequirePackage{mathtools}
+\RequirePackage{amssymb}
+\RequirePackage{bm}
+\RequirePackage{parskip}
+\RequirePackage{bbm}
+\RequirePackage{titling}
+\RequirePackage{graphicx}
+\RequirePackage{float}
+\RequirePackage{caption}
+\RequirePackage{subcaption}
+\RequirePackage{tabularx,ragged2e,booktabs, multirow}
+\RequirePackage[export]{adjustbox}
+\RequirePackage{atbegshi,picture}
+\RequirePackage{framed}
+\RequirePackage{ifthen}
+\RequirePackage{color}
+\RequirePackage{upgreek}
+\RequirePackage{siunitx}
+\sisetup{group-digits=false,output-exponent-marker=\textsc{e}, bracket-negative-numbers, open-bracket={\text{-}}, close-bracket={}}
+\RequirePackage{enumerate}
+\RequirePackage{cancel}
+\RequirePackage{microtype}
+\RequirePackage{enumitem}
+\RequirePackage{wrapfig}
+\RequirePackage{physics}
+\RequirePackage{pdfpages}
+\RequirePackage{libertine}
+\renewcommand*\rmdefault{cmr}
+
+\RequirePackage{tikz}
+\RequirePackage[american]{circuitikz}
+\RequirePackage{tkz-euclide}
+\usetkzobj{all}
+\usetikzlibrary{calc}
+\addtolength{\jot}{.4em}
+\usetikzlibrary{arrows,shapes,positioning}
+\usetikzlibrary{decorations.markings}
+\tikzstyle arrowstyle=[scale=1]
+\tikzstyle directed=[postaction={decorate,decoration={markings,
+		mark=at position .65 with {\arrow[arrowstyle]{stealth}}}}]
+\usetikzlibrary{intersections}
+\usetikzlibrary{decorations.pathmorphing,shapes}
+\tikzset{snake it/.style={decorate, decoration=snake}}
+
+\allowdisplaybreaks
+
+\newcommand{\pronewcommand}[2]{\providecommand{#1}{#2}\renewcommand{#1}{#2}}
+
+\newcommand{\T}{\intercal}
+\newcommand{\sqfr}[2]{\sqrt{\frac{#1}{#2}}}
+\newcommand{\e}{\mathrm{e}}
+\newcommand{\underdot}{\d}
+\renewcommand{\d}{\dd}
+\newcommand{\dif}{\dd}
+\newcommand{\od}{\derivative}
+\newcommand{\pd}{\pdv}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\newcommand{\iimg}{\bm{\upiota}}
+\newcommand{\mr}{\mathrm}
+\newcommand{\KE}{\mr{KE}}
+
+\newcommand{\dx}{\dif{x}}
+\newcommand{\dy}{\dif{y}}
+\newcommand{\dz}{\dif{z}}
+\newcommand{\du}{\dif{u}}
+\newcommand{\dt}{\dif{t}}
+\newcommand{\dm}{\dif{m}}
+\providecommand{\dv}{\dif{v}}
+\renewcommand{\dv}{\dif{v}}
+\newcommand{\dr}{\dif{r}}
+\newcommand{\dtheta}{\dif{\theta}}
+\newcommand{\dphi}{\dif{\phi}}
+\newcommand{\drho}{\dif{\rho}}
+\newcommand{\dmu}{\dif{\mu}}
+\newcommand{\dA}{\dif{A}}
+\newcommand{\dV}{\dif{V}}
+
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+\newcommand{\rhat}{\boldsymbol{\hat{\textbf{r}}}}
+\newcommand{\rhohat}{\boldsymbol{\hat{\bm{\rho}}}}
+\newcommand{\phihat}{\boldsymbol{\hat{\bm{\phi}}}}
+\newcommand{\thetahat}{\boldsymbol{\hat{\bm{\theta}}}}
+\newcommand{\Evec}{\vec{\bm{E}}}
+\newcommand{\Bvec}{\vec{\bm{B}}}
+\newcommand{\rv}{\bm{r}}
+\newcommand{\vv}{\bm{v}}
+\newcommand{\uv}{\bm{u}}
+\newcommand{\rvf}{\vec{\bm{r}}}
+\newcommand{\vvf}{\vec{\bm{v}}}
+\newcommand{\uvf}{\vec{\bm{u}}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\vect}[1]{\bm{#1}}
+\newcommand{\sgn}{sgn}
+\newcommand{\numberthis}{\addtocounter{equation}{1}\tag{\theequation}}
+\newcommand{\angstrom}{\mbox{\normalfont\AA}}
+\newcommand{\qimpq}{\quad\implies\quad}
+\newcommand{\qqimpqq}{\qquad\implies\qquad}
+\newcommand{\qiffq}{\quad\iff\quad}
+\newcommand{\qqiffqq}{\qquad\iff\qquad}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=1pt] (char) {#1};}}
+\newcommand{\rad}{\radian}
+\definecolor{codegray}{gray}{0.9}
+\newcommand{\code}[1]{\colorbox{codegray}{\texttt{#1}}}
+\newcommand*{\equal}{=}
+\renewcommand{\hbar}{\mathchar'26\mkern-8mu \mathrm{\textbf{h}}}
+\renewcommand{\c}{\mathrm{\textbf{c}}}
+
+\newcommand{\nfrac}[2]{\frac{\raisebox{-.5ex}{$\displaystyle{#1}$}}{#2}}
+
+\DeclareMathOperator\arcsinh{arcsinh}
+\DeclareMathOperator\arccosh{arccosh}
+\DeclareMathOperator\arctanh{arctanh}
+\DeclareMathOperator\arccsch{arccsch}
+\DeclareMathOperator\arcsech{arcsech}
+\DeclareMathOperator\arccoth{arccoth}
+
+\newtheoremstyle{myStyleSC}
+  {10pt} % Space above
+  {10pt} % Space below
+  {\itshape} % Body font
+  {} % Indent amount
+  {\libertine\bfseries\scshape} % Theorem head font
+  {.} % Punctuation after theorem head
+  {.5em} % Space after theorem head
+  {} % Theorem head spec (can be left empty, meaning `normal')
+\theoremstyle{myStyleSC}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}[theorem]{\textsc{Definition}}
+\newtheorem{lemma}[theorem]{\textsc{Lemma}}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{algorithm}[theorem]{Algorithm}
+
+\newtheorem*{definition*}{Definition}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem*{algorithm*}{Algorithm}
+
+\newtheoremstyle{myStyleIT}
+  {10pt} % Space above
+  {10pt} % Space below
+  {} % Body font
+  {} % Indent amount
+  {\itshape} % Theorem head font
+  {.} % Punctuation after theorem head
+  {.5em} % Space after theorem head
+  {} % Theorem head spec (can be left empty, meaning `normal')
+\theoremstyle{myStyleIT}
+
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{postulate}[theorem]{Postulate}
+\newtheorem{identity}[theorem]{Identity}
+\newtheorem{paradox}[theorem]{Paradox}
+
+\newtheorem*{conjecture*}{Conjecture}
+\newtheorem*{claim*}{Claim}
+\newtheorem*{axiom*}{Axiom}
+\newtheorem*{postulate*}{Postulate}
+\newtheorem*{identity*}{Identity}
+\newtheorem*{paradox*}{Paradox}
+\newtheorem*{exercise*}{Exercise}
+\newtheorem*{fact*}{Fact}
+\newtheorem*{conclusion*}{Conclusion}
+\newtheorem*{remark*}{Remark}
+\newtheorem*{note*}{Note}
+
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\setlength{\droptitle}{-1in}
+
+\newcommand{\studentnumber}[1]
+{
+	\AtBeginShipoutNext{\AtBeginShipoutUpperLeft{%
+		\put(\dimexpr\paperwidth-1cm\relax,-1.5cm){\makebox[0pt][r]{\mbox{\textup{#1}}}}%
+	}}	
+}
+  
+\newif\if@insolution
+\@insolutionfalse
+
+\newif\if@prob	%problem if true
+\@probtrue
+
+\newif\if@example	%example if true
+\@exampletrue
+ 
+\newcommand{\exampletitle}[1][]{\textcolor{darkgray}{\raisebox{0.25ex}{$\blacktriangleright$}}\nobreakspace{\sffamily\textbf{Example\ifthenelse{\equal{#1}{}}{}{ (#1)}}}}
+\newcommand{\problemtitle}[1][]{\textcolor{darkgray}{\raisebox{0.25ex}{$\blacktriangleright$}}\nobreakspace{\sffamily\textbf{Problem\ifthenelse{\equal{#1}{}}{}{ (#1)}}}}
+\newcommand{\solutiontitle}[1][]{\textcolor{darkgray}{\raisebox{0.25ex}{$\blacktriangleleft$}}\nobreakspace{\sffamily\textbf{Solution\ifthenelse{\equal{#1}{}}{}{ (#1)}}}}
+\newcommand{\solutionendline}{\hfill\makebox[0pt][c]{$\rule{2in}{0.15mm}$}\makebox[.381953in][r]{}}
+\newenvironment{TheProblem}[1][]%
+  {%
+    \vspace{\parskip}%
+    \leftskip=0pt
+    \rightskip=0pt
+    \if@prob
+	\if@example
+		\exampletitle[#1]
+	\else
+		\problemtitle[#1]
+	\fi
+    \else
+    	\solutiontitle[#1]
+    \fi
+    \MakeFramed{\advance\hsize-\width}%
+    \ignorespaces
+  }%
+  {%
+    \if@prob\else
+	{
+	\noindent
+	\solutionendline
+	}
+    \fi
+    \unskip
+    \endMakeFramed
+  }%
+
+\newif\if@framedsolutions
+\@framedsolutionstrue
+% If the user said \unframedsolutions, then both
+% \if@framedsolutions and \if@shadedsolutions are false.
+
+\def\framedsolutions{\@framedsolutionstrue\@shadedsolutionsfalse}
+\def\unframedsolutions{\@framedsolutionsfalse\@shadedsolutionsfalse}
+
+\newenvironment{problem}[1][]%
+  {%
+    \FrameRestore
+    \@insolutiontrue % cancelled by the end of the environment
+    \@probtrue
+    \@examplefalse
+    \begin{TheProblem}[#1]%
+  }{%
+    \end{TheProblem}%
+  }%
+
+\newenvironment{example}[1][]%
+  {%
+    \FrameRestore
+    \@insolutiontrue % cancelled by the end of the environment
+    \@probtrue
+    \@exampletrue
+    \begin{TheProblem}[#1]%
+  }{%
+    \end{TheProblem}%
+  }%
+
+\newenvironment{solution}[1][]%
+  {%
+    \def\FrameCommand{}%
+    \@insolutiontrue % cancelled by the end of the environment
+    \@probfalse
+    \begin{TheProblem}[#1]%
+  }{%
+    \end{TheProblem}%
+  }%
+  
+\newdimen\saved@totalleftmargin
+\newcount\@sollistdepth
+
+\chardef\FrameRestore=\catcode`\| % for debug
+\catcode`\|=\catcode`\% % (debug: insert space after backslash)
+
+\def\MakeFramed#1{\par
+ % measure added width and height; call result \width and \height
+ \setbox\z@\vbox{\vskip-1in \hbox{\hskip-1in 
+   \FrameCommand{\hbox{\vrule \@height .7in \@depth.3in \@width 1in}}}%
+   \vskip\z@skip}%
+ \def\width{\wd\z@}\def\height{\ht\z@}%
+ \edef\fb@frw{\the\width}\edef\fb@frh{\the\height}%
+ % insert pre-penalties and skips
+ \begingroup
+ \skip@\lastskip
+ \if@nobreak\else 
+    \penalty9999 % updates \page parameters
+    \ifdim\pagefilstretch=\z@ \ifdim\pagefillstretch=\z@
+       \edef\@tempa{\the\skip@}%
+       \ifx\@tempa\zero@glue \penalty-30
+       \else \vskip-\skip@ \penalty-30 \vskip\skip@
+    \fi\fi\fi
+    \penalty\z@
+    % Give a stretchy breakpoint that will always be taken in preference
+    % to the \penalty 9999 used to update page parameters.  The cube root
+    % of 10000/100 indicates a multiplier of 0.21545, but the maximum 
+    % calculated badness is really 8192, not 10000, so the multiplier
+    % is 0.2301. 
+    \advance\skip@ \z@ plus-.5\baselineskip
+    \advance\skip@ \z@ plus-.231\height
+    \advance\skip@ \z@ plus-.231\skip@
+    \advance\skip@ \z@ plus-.231\topsep
+    \vskip-\skip@ \penalty 1800 \vskip\skip@
+ \fi
+ \addvspace{\topsep}%
+ \endgroup
+ % clear out pending page break
+ \penalty\@M \vskip 2\baselineskip \vskip\height
+ \penalty9999 \vskip -2\baselineskip \vskip-\height
+ \penalty9999 % updates \pagetotal
+|\message{After clearout, \pagetotal=\the\pagetotal, \pagegoal=\the\pagegoal. }%
+ \fb@adjheight 
+%psh: Added commands:
+  \advance\hsize-\@totalleftmargin
+  \saved@totalleftmargin=\@totalleftmargin
+  \@totalleftmargin=0pt
+  \parshape 0
+  \let\@listdepth=\@sollistdepth
+  \@sollistdepth=0
+  \leftmargin=0pt
+%psh: end of added commands
+ \setbox\@tempboxa\vbox\bgroup
+   #1% Modifications to \hsize (can use \width and \height)
+   \textwidth\hsize \columnwidth\hsize
+%psh: added one line:
+   \linewidth=\hsize
+}
+
+\def\endMakeFramed{\par
+     \kern\z@ \penalty-100 % put depth into height
+ \egroup
+ \begingroup \put@frame \endgroup
+%psh: Added one line:
+ \@totalleftmargin=\saved@totalleftmargin
+}
+
+% \put@frame takes the contents of \@tempboxa and puts all, or a piece,
+% of it on the page with a frame (\FrameCommand).  It recurses until
+% all of \@tempboxa has been used up. (\@tempboxa must have zero depth.)
+
+\def\put@frame{\relax
+ \ifdim\pagegoal=\maxdimen \pagegoal\vsize \fi
+|   \message{=============== Entering putframe ====================^^J
+|     \pagegoal=\the\pagegoal,  \pagetotal=\the\pagetotal. }%
+ \ifinner \else
+    \dimen@\pagegoal \advance\dimen@-\pagetotal % natural space left on page
+  \ifdim\dimen@<2\baselineskip 
+|   \message{Page has only \the\dimen@\space room left; eject. }%
+    \eject \fb@adjheight \put@frame
+  \else % there's appreciable room left on the page
+|    \message{\string\pagetotal=\the\pagetotal,
+|        \string\pagegoal=\the\pagegoal, 
+|        \string\pagestretch=\the\pagestretch,
+|        \string\pageshrink=\the\pageshrink,
+|        \string\fb@frh=\fb@frh. \space}
+|    \message{Box of size \the\ht\@tempboxa\space + \fb@frh}%
+     \begingroup % temporarily set \dimen@ to be...
+     \advance\dimen@.8\pageshrink  % maximum space available on page
+     \advance\dimen@-\fb@frh\relax % space available for frame's contents
+     \expandafter\endgroup
+     % restore \dimen@ to real room left on page
+     \ifdim\dimen@>\ht\@tempboxa % whole box does fit
+|       \message{fits in \the\dimen@. }%
+     \else % box must be split
+|       \message{must be split to fit in \the\dimen@. }%
+        \setbox\@tempboxa\vbox{% simulate frame and flexiblity of the page:
+           \vskip \fb@frh \@plus\pagestretch \@minus.8\pageshrink
+           \kern137sp\kern-137sp\penalty-30
+           \unvbox\@tempboxa}%
+        \edef\fb@resto@set{\boxmaxdepth\the\boxmaxdepth \splittopskip\the\splittopskip}%
+        \boxmaxdepth\z@ \splittopskip\z@
+        \setbox\tw@\vsplit\@tempboxa to\dimen@
+        \setbox\tw@\vbox{\unvbox\tw@}% natural-sized
+|       \message{Box of size \the\ht\@tempboxa\space split to \the\dimen@. 
+|          Natural height of split box is \the\ht\tw@. }%
+        % If the split-to size > (\vsize-\topskip), then set box to full size
+        \begingroup
+          \advance\dimen@\topskip
+          \expandafter\endgroup
+        \ifdim\dimen@>\pagegoal
+|         \message{Frame is big -- Use up the full column. }%
+          \dimen@ii\pagegoal
+          \advance\dimen@ii -\topskip
+          \advance\dimen@ii \FrameHeightAdjust\relax
+        \else  % suspect this is wrong:
+          % If the split-to size > feasible room_on_page, rebox it smaller.
+          \advance\dimen@.8\pageshrink
+          \ifdim\ht\tw@>\dimen@
+|           \message{Box too tall; rebox it to \the\dimen@. }%
+            \dimen@ii\dimen@
+          \else % use natural size
+            \dimen@ii\ht\tw@
+          \fi
+        \fi
+        % Re-box contents to desired size \dimen@ii
+        \advance\dimen@ii -\fb@frh
+        \setbox\tw@\vbox to\dimen@ii \bgroup
+        % remove simulated frame and page flexibility:
+        \vskip -\fb@frh \@plus-\pagestretch \@minus-.8\pageshrink
+        \unvbox\tw@ \unpenalty\unpenalty
+        \ifdim\lastkern=-137sp % whole box went to next page
+|          \message{box split at beginning! }%
+           \egroup \fb@resto@set \eject % (\vskip for frame size was discarded) 
+           \fb@adjheight
+        \else %
+           \egroup \fb@resto@set
+           \ifvoid\@tempboxa % it all fit after all
+|             \message{box split at end! }%
+              \setbox\@tempboxa\box\tw@
+           \else % it really did split
+|             \message{box split as expected. Its reboxed height is \the\ht\tw@. }%
+              \ifdim\wd\tw@>\z@
+%psh: Changed the command that inserts the box:
+%     Instead of \centerline, we shift right by \saved@totalleftmargin:
+%              \centerline{\FrameCommand{\box\tw@}}%  ??? \centerline bad idea
+       \hbox{\hskip \saved@totalleftmargin\FrameCommand{\box\tw@}}%
+              \else
+|               \message{Zero width means likely blank. Don't frame it (guess)}%
+                \box\tw@
+              \fi
+              \hrule \@height\z@
+              \eject
+              \fb@adjheight
+              \put@frame
+  \fi\fi\fi\fi\fi
+  \ifvoid\@tempboxa\else
+%psh: Changed the command that inserts the box:
+%     Instead of \centerline, we shift right by \saved@totalleftmargin:
+%    \centerline{\FrameCommand{\box\@tempboxa}}%
+    \hbox{\hskip\saved@totalleftmargin\FrameCommand{\box\@tempboxa}}%
+    \nointerlineskip \null %{\showoutput \showlists}
+    \penalty-30 \vskip\topsep
+  \fi}
+
+\def\fb@adjheight{%
+  \vbox to\FrameHeightAdjust{}% get proper baseline skip from above.
+  \penalty\@M \nointerlineskip
+  \vskip-\FrameHeightAdjust
+  \penalty\@M} % useful for tops of pages
+
+\edef\zero@glue{\the\z@skip}
+
+\catcode`\|=\FrameRestore
+
+% Provide configuration commands:
+\providecommand\FrameCommand{\fboxrule=\FrameRule \fboxsep=\FrameSep \fbox}
+\@ifundefined{FrameRule}{\newdimen\FrameRule \FrameRule=\fboxrule}{}
+\@ifundefined{FrameSep} {\newdimen\FrameSep  \FrameSep =3\fboxsep}{}
+
+% Height of frame above first baseline when frame starts a page:
+\providecommand\FrameHeightAdjust{6pt}
+
+% \FrameRestore has parts of \@parboxrestore.  See how it is used in the 
+% "settings" argument of \MakeFrame.  Previous behavior can be restored by 
+% using \@parboxrestore there, or redefining:
+% \makeatletter \renewcommand\FrameRestore{\@parboxrestore} \makeatother
+\def\FrameRestore{%
+  \let\if@nobreak\iffalse
+  \let\if@noskipsec\iffalse
+%  \let\par\@@par  ??
+  \let\-\@dischyph
+  \let\'\@acci\let\`\@accii\let\=\@acciii
+%  \parindent\z@ \parskip\z@skip    Definitely omit!
+%  \everypar{}%  ??
+  \linewidth\hsize
+%  \@totalleftmargin\z@
+%  \leftskip\z@skip \rightskip\z@skip \@rightskip\z@skip
+%  \parfillskip\@flushglue \lineskip\normallineskip
+%  \baselineskip\normalbaselineskip
+  \sloppy
+%  \let\\\@normalcr
+}
+
+%  Compatibility with previous versions (temporary!):
+\let\fram@d=\MakeFramed  \let\endfram@d=\endMakeFramed
+
+
+\endinput
