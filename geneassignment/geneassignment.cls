@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{geneassignment}[2016/12/01 v0.1 Gene's class for making assignments]
+\ProvidesClass{geneassignment}[2016/12/01 v0.1 My class for making assignments]
 
 % Passes and class options to the underlying article class
 \DeclareOption*{%
