@@ -43,6 +43,7 @@
 \RequirePackage{tikz}
 \RequirePackage[american]{circuitikz}
 \RequirePackage{tkz-euclide}
+\RequirePackage{inconsolata}
 \usetkzobj{all}
 \usetikzlibrary{calc}
 \addtolength{\jot}{.4em}
@@ -132,6 +133,9 @@
 \newcommand{\qqimpqq}{\qquad\implies\qquad}
 \newcommand{\qiffq}{\quad\iff\quad}
 \newcommand{\qqiffqq}{\qquad\iff\qquad}
+\newcommand{\qqtxtqq}[1]{\qquad\mathrm{#1}\qquad}
+\newcommand{\qqtextqq}[1]{\qqtxtqq{#1}}
+\newcommand{\qqandqq}{\qqtxtqq{and}}
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
             \node[shape=circle,draw,inner sep=1pt] (char) {#1};}}
 \newcommand{\rad}{\radian}
@@ -141,6 +145,8 @@
 \renewcommand{\hbar}{\mathchar'26\mkern-8mu \mathrm{\textbf{h}}}
 \renewcommand{\c}{\mathrm{\textbf{c}}}
 \newcommand{\coloneqq}{\vcentcolon=}
+\newcommand{\lagr}{\mathcal{L}}
+\newcommand{\lagrangian}{\lagr}
 
 \newcommand{\nfrac}[2]{\frac{\raisebox{-.5ex}{$\displaystyle{#1}$}}{#2}}
 
