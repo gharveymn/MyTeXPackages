@@ -44,6 +44,7 @@
 \RequirePackage[american]{circuitikz}
 \RequirePackage{tkz-euclide}
 \RequirePackage{inconsolata}
+\RequirePackage{accents}
 \usetkzobj{all}
 \usetikzlibrary{calc}
 \addtolength{\jot}{.4em}
@@ -156,6 +157,10 @@
 \DeclareMathOperator\arccsch{arccsch}
 \DeclareMathOperator\arcsech{arcsech}
 \DeclareMathOperator\arccoth{arccoth}
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
 
 \newtheoremstyle{myStyleSC}
   {10pt} % Space above
